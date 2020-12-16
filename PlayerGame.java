@@ -105,6 +105,7 @@ public class PlayerGame {
   // called when the user clicks on a location.
   // that location is passed to this method.
   private void locationClicked(Location loc) {
+    System.out.println(loc.toString());
     if (turn == true) {
 
       if (imageClicked == null) // means you havnt clicked an image yet
