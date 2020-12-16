@@ -106,10 +106,12 @@ public class PlayerGame {
   // that location is passed to this method.
   private void locationClicked(Location loc) {
     System.out.println(loc.toString());
+    System.out.println(turn);
     if (turn == true) {
 
       if (imageClicked == null) // means you havnt clicked an image yet
       {
+        System.out.println("First Click");
         if (display.getImage(loc) != null) {
           if ((color == 0 && display.getImage(loc).substring(0, 5).equals("white"))
               || (color == 1 && display.getImage(loc).substring(0, 5).equals("black"))) // if cliocked your own peice
