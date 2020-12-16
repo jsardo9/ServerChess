@@ -106,13 +106,15 @@ public class PlayerGame {
   // that location is passed to this method.
   private void locationClicked(Location loc) {
     System.out.println(loc.toString());
+    System.out.println(turn);
     if (turn == true) {
 
       if (imageClicked == null) // means you havnt clicked an image yet
       {
+        System.out.println("First Click");
         if (display.getImage(loc) != null) {
-          if ((color == 0 && display.getImage(loc).substring(0, 5).equals("white"))
-              || (color == 1 && display.getImage(loc).substring(0, 5).equals("black"))) // if cliocked your own peice
+          if ((color == 0 && display.getImage(loc).substring(7, 12).equals("white"))
+              || (color == 1 && display.getImage(loc).substring(7, 12).equals("black"))) // if cliocked your own peice
           {
             squareClicked = display.getColor(loc);
             display.setColor(loc, new Color(129, 150, 105)); // green
@@ -124,8 +126,8 @@ public class PlayerGame {
       {
         // System.out.println(getLegalMoves(locClicked).isEmpty());
 
-        if (display.getImage(loc) != null && ((color == 0 && display.getImage(loc).substring(0, 5).equals("white"))
-            || (color == 1 && display.getImage(loc).substring(0, 5).equals("black")))) // if clicked own color
+        if (display.getImage(loc) != null && ((color == 0 && display.getImage(loc).substring(7, 12).equals("white"))
+            || (color == 1 && display.getImage(loc).substring(7, 12).equals("black")))) // if clicked own color
         {
 
           display.setColor(locClicked, squareClicked);
@@ -186,8 +188,8 @@ public class PlayerGame {
     ArrayList<Location> legalMoves = new ArrayList<Location>();
     int row = location.getRow();
     int col = location.getCol();
-    // System.out.println(piece.substring(5));
-    if (piece.substring(5).equals("Pawn.png")) {
+    // System.out.println(piece.substring(12));
+    if (piece.substring(12).equals("Pawn.png")) {
 
       if (row == 6) // accounts for pawns on first move
       {
@@ -205,7 +207,7 @@ public class PlayerGame {
       {
 
         if (display.getImage(new Location(row - 1, col - 1)) != null
-            && !display.getImage(new Location(row - 1, col - 1)).substring(0, 5).equals(myColor)) {
+            && !display.getImage(new Location(row - 1, col - 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row - 1, col - 1));
         }
       }
@@ -213,7 +215,7 @@ public class PlayerGame {
       if (col < 7 && row != 0) // checks right captures
       {
         if (display.getImage(new Location(row - 1, col + 1)) != null
-            && !display.getImage(new Location(row - 1, col + 1)).substring(0, 5).equals(myColor)) {
+            && !display.getImage(new Location(row - 1, col + 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row - 1, col + 1));
         }
       }
@@ -223,16 +225,16 @@ public class PlayerGame {
       }
 
       return legalMoves;
-    } else if (piece.substring(5).equals("Rook.png")) {
+    } else if (piece.substring(12).equals("Rook.png")) {
       for (int i = row - 1; i >= 0; i--) // does up moves
       {
         // System.out.println(i);
         if (display.getImage(new Location(i, col)) == null) {
           // System.out.println(new Location(i, col).toString());
           legalMoves.add(new Location(i, col));
-        } else if (display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           // System.out.println(new Location(i, col).toString());
           legalMoves.add(new Location(i, col));
           break;
@@ -243,9 +245,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, col)) == null) {
           legalMoves.add(new Location(i, col));
-        } else if (display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           // break;
-        } else if (!display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, col));
           break;
         }
@@ -255,9 +257,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row, i)) == null) {
           legalMoves.add(new Location(row, i));
-        } else if (display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row, i));
           break;
         }
@@ -267,9 +269,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row, i)) == null) {
           legalMoves.add(new Location(row, i));
-        } else if (display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row, i));
           break;
         }
@@ -278,15 +280,15 @@ public class PlayerGame {
       return legalMoves;
     }
 
-    else if (piece.substring(5).equals("Bishop.png")) {
+    else if (piece.substring(12).equals("Bishop.png")) {
 
       for (int i = row + 1, j = col + 1; i < 8 && j < 8; i++, j++) // does down right moves
       {
         if (display.getImage(new Location(i, j)) == null) {
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -296,9 +298,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, j)) == null) {
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -310,9 +312,9 @@ public class PlayerGame {
         if (display.getImage(new Location(i, j)) == null) {
 
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           // break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -322,9 +324,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, j)) == null) {
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -333,14 +335,14 @@ public class PlayerGame {
       return legalMoves;
     }
 
-    else if (piece.substring(5).equals("Queen.png")) {
+    else if (piece.substring(12).equals("Queen.png")) {
       for (int i = row + 1, j = col + 1; i < 8 && j < 8; i++, j++) // does down right moves
       {
         if (display.getImage(new Location(i, j)) == null) {
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -350,9 +352,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, j)) == null) {
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -362,9 +364,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, j)) == null) {
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -374,9 +376,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, j)) == null) {
           legalMoves.add(new Location(i, j));
-        } else if (display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, j)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, j)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, j));
           break;
         }
@@ -386,9 +388,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, col)) == null) {
           legalMoves.add(new Location(i, col));
-        } else if (display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, col));
           break;
         }
@@ -398,9 +400,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(i, col)) == null) {
           legalMoves.add(new Location(i, col));
-        } else if (display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(i, col)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(i, col)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(i, col));
           break;
         }
@@ -410,9 +412,9 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row, i)) == null) {
           legalMoves.add(new Location(row, i));
-        } else if (display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row, i));
           break;
         }
@@ -422,20 +424,20 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row, i)) == null) {
           legalMoves.add(new Location(row, i));
-        } else if (display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           break;
-        } else if (!display.getImage(new Location(row, i)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row, i)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row, i));
           break;
         }
       }
       return legalMoves;
-    } else if (piece.substring(5).equals("King.png")) {
+    } else if (piece.substring(12).equals("King.png")) {
       if (display.isValid(new Location(row - 1, col - 1))) // 1
       {
         if (display.getImage(new Location(row - 1, col - 1)) == null) {
           legalMoves.add(new Location(row - 1, col - 1));
-        } else if (!display.getImage(new Location(row - 1, col - 1)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row - 1, col - 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row - 1, col - 1));
         }
       }
@@ -444,7 +446,7 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row - 1, col)) == null) {
           legalMoves.add(new Location(row - 1, col));
-        } else if (!display.getImage(new Location(row - 1, col)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row - 1, col)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row - 1, col));
         }
       }
@@ -453,7 +455,7 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row - 1, col + 1)) == null) {
           legalMoves.add(new Location(row - 1, col + 1));
-        } else if (!display.getImage(new Location(row - 1, col + 1)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row - 1, col + 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row - 1, col + 1));
         }
       }
@@ -462,7 +464,7 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row, col - 1)) == null) {
           legalMoves.add(new Location(row, col - 1));
-        } else if (!display.getImage(new Location(row, col - 1)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row, col - 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row, col - 1));
         }
       }
@@ -471,7 +473,7 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row, col + 1)) == null) {
           legalMoves.add(new Location(row, col + 1));
-        } else if (!display.getImage(new Location(row, col + 1)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row, col + 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row, col + 1));
         }
       }
@@ -480,7 +482,7 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row + 1, col - 1)) == null) {
           legalMoves.add(new Location(row + 1, col - 1));
-        } else if (!display.getImage(new Location(row + 1, col - 1)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row + 1, col - 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row + 1, col - 1));
         }
       }
@@ -489,7 +491,7 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row + 1, col)) == null) {
           legalMoves.add(new Location(row + 1, col));
-        } else if (!display.getImage(new Location(row + 1, col)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row + 1, col)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row + 1, col));
         }
       }
@@ -498,13 +500,13 @@ public class PlayerGame {
       {
         if (display.getImage(new Location(row + 1, col + 1)) == null) {
           legalMoves.add(new Location(row + 1, col + 1));
-        } else if (!display.getImage(new Location(row + 1, col + 1)).substring(0, 5).equals(myColor)) {
+        } else if (!display.getImage(new Location(row + 1, col + 1)).substring(7, 12).equals(myColor)) {
           legalMoves.add(new Location(row + 1, col + 1));
         }
       }
 
       return legalMoves;
-    } else if (piece.substring(5).equals("Knight.png")) {
+    } else if (piece.substring(12).equals("Knight.png")) {
 
       legalMoves.add(new Location(row - 2, col + 1));
       legalMoves.add(new Location(row - 2, col - 1));
@@ -522,7 +524,7 @@ public class PlayerGame {
           legalMoves.remove(i);
         } else if (display.getImage(legalMoves.get(i)) == null) {
 
-        } else if ((display.getImage(legalMoves.get(i)).substring(0, 5).equals(myColor))) {
+        } else if ((display.getImage(legalMoves.get(i)).substring(7, 12).equals(myColor))) {
           legalMoves.remove(i);
 
         }
@@ -547,11 +549,11 @@ public class PlayerGame {
     for (int i = 0; i < 8; i++) {
       System.out.println(i);
       if (display.isValid(new Location(0, i))) {
-        // System.out.println((display.getImage(new Location(0,i))).substring(5));
+        // System.out.println((display.getImage(new Location(0,i))).substring(12));
       }
 
       if (display.getImage(new Location(0, i)) != null
-          && (display.getImage(new Location(0, i))).substring(5).equals("Pawn.png")) {
+          && (display.getImage(new Location(0, i))).substring(12).equals("Pawn.png")) {
         System.out.println("dodododododododo");
         if (color == 0) {
           display.setImage(new Location(0, i), null);
@@ -564,7 +566,7 @@ public class PlayerGame {
       }
 
       if (display.getImage(new Location(7, i)) != null
-          && (display.getImage(new Location(7, i))).substring(5).equals("Pawn.png")) {
+          && (display.getImage(new Location(7, i))).substring(12).equals("Pawn.png")) {
         System.out.println("uhuuhuhuhuhhu");
         if (color == 1) {
           display.setImage(new Location(7, i), null);
