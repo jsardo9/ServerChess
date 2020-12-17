@@ -18,7 +18,7 @@ public class PlayerGame {
     turn = true;
     color = 0; // 0 is white
     display = new GridDisplay(8, 8);
-    display.setTitle("Not checkers... This Chess");
+    display.setTitle("Chess");
 
     locClicked = null;
     imageClicked = null;
