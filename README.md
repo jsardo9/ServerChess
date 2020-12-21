@@ -1,5 +1,6 @@
 # ServerChess
  Chess interface for players to connect online via remote server.
+ GUI for each player which updates in real time as moves are played.
 
 # Instructions
 - Run "Server.java" on a computer which you want to host the server.
