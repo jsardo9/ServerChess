@@ -9,4 +9,4 @@
  
  # User Interface
  
- ![Alt text](/src/DemoPhotos/GUIExample1.jpg?raw=true "UI1")
+ ![Alt text](/DemoPhotos/GUIExample1.png?raw=true "UI1")
