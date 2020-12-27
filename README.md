@@ -10,3 +10,5 @@
  # User Interface
  
  ![Alt text](/DemoPhotos/GUIExample1.png?raw=true "UI1")
+ ![Alt text](/DemoPhotos/GUIExample2.png?raw=true "UI1")
+ ![Alt text](/DemoPhotos/GUIExample3.png?raw=true "UI1")
