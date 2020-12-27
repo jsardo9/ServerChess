@@ -15,12 +15,6 @@ public class Server {
   public Server() throws IOException, InterruptedException {
     ServerSocket server = new ServerSocket(1910); // start server on port 1911
 
-    /*
-     * for (int i = 0; i < 100; i++) { Thread.sleep(300); String dots; if (i % 3 ==
-     * 0) { dots = ".    \r"; } else if (i % 3 == 1) { dots = ". .   \r"; } else {
-     * dots = ". . .\r"; } System.out.print(dots); }
-     */
-
     System.out.println("Server now active");
     while (true) {
       System.out.println("Listening for client");
