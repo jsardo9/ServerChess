@@ -1,4 +1,3 @@
-
 import java.io.*; //for BufferedReader, InputStreamReader, PrintWriter
 import java.net.*; //for ServerSocket, Socket
 
@@ -13,7 +12,7 @@ public class Server {
   }
 
   public Server() throws IOException, InterruptedException {
-    ServerSocket server = new ServerSocket(1910); // start server on port 1911
+    ServerSocket server = new ServerSocket(1910); // start server on port 191
 
     System.out.println("Server now active");
     while (true) {
